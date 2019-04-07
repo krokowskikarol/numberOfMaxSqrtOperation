@@ -11,27 +11,28 @@ package numberofsquares;
  */
 public class maxSqrtWithinAgivenRange {
 
+    
     public int numberOfSquares(int num) {
         int sum = 0;
-        if (num > 1) {
+        if (num > 1) {                              // barrier loop (if you give as num argument 1 it get sqrt(1) = 1.0 and we gonna walk into infinite loop problem)
             double sqrtBase = num;
-            while (Math.sqrt(sqrtBase) % 1 == 0) {
-                sum++;
-                sqrtBase = Math.sqrt(sqrtBase);
+            while (Math.sqrt(sqrtBase) % 1 == 0) {  // as long as u get int from sqrt operation 
+                sum++;                              // increase counter
+                sqrtBase = Math.sqrt(sqrtBase);     // and update the number we take sqrt from
             }
         }
-        return sum;
+        return sum;                                 // return sum of correctly executed sqrt operations
     }
 
-    public int maxNumberOfSqrt(int start, int end) {
-        int max = 0;
-        int sqrt = 0;
-        for (int i = start; i <= end; i++) {
-            sqrt = numberOfSquares(i);
-            if (sqrt > max) {
-                max = sqrt;
+    public int maxNumberOfSqrtInRange(int start, int end) {
+        int max = 0;                                // counter of max sqrt operations
+        int sqrt = 0;                               // variable for updated sqrt
+        for (int i = start; i <= end; i++) {        // loop with a given range
+            sqrt = numberOfSquares(i);              // we calculate max number of sqrt operations for that number (i)
+            if (sqrt > max) {                       // check if current muber of operation is greater than max
+                max = sqrt;                         // if so update max
             }
         }
-        return max;
+        return max;                                 // return max
     }
 }
